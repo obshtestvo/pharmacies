@@ -1,0 +1,23 @@
+{
+  "name": "pharmacies.obshtestvo.bg",
+  "version": "0.0.0",
+  "description": "Sample app for open data access",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/obshtestvo/pharmacies.git"
+  },
+  "author": "jorr",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/obshtestvo/pharmacies/issues"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "underscore": "~1.7.0",
+    "node-geocoder": "~2.9.0"
+  }
+}

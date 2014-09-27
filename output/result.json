@@ -1,0 +1,49 @@
+{"help":"Search a DataStore resource.
+    The datastore_search action allows you to search data in a resource.
+    DataStore resources that belong to private CKAN resource can only be
+    read by you if you have access to the CKAN resource and send the appropriate
+    authorization.
+    :param resource_id: id or alias of the resource to be searched against
+    :type resource_id: string
+    :param filters: matching conditions to select, e.g {\"key1\": \"a\", \"key2\": \"b\"} (optional)
+    :type filters: dictionary
+    :param q: full text query. If it's a string, it'll search on all fields on
+              each row. If it's a dictionary as {\"key1\": \"a\", \"key2\": \"b\"},
+              it'll search on each specific field (optional)
+    :type q: string or dictionary
+    :param distinct: return only distinct rows (optional, default: false)
+    :type distinct: bool
+    :param plain: treat as plain text query (optional, default: true)
+    :type plain: bool
+    :param language: language of the full text query (optional, default: english)
+    :type language: string
+    :param limit: maximum number of rows to return (optional, default: 100)
+    :type limit: int
+    :param offset: offset this number of rows (optional)
+    :type offset: int
+    :param fields: fields to return (optional, default: all fields in original order)
+    :type fields: list or comma separated string
+    :param sort: comma separated field names with ordering
+                 e.g.: \"fieldname1, fieldname2 desc\"
+    :type sort: string
+    Setting the ``plain`` flag to false enables the entire PostgreSQL `full text search query language`_.
+    A listing of all available resources can be found at the alias ``_table_metadata``.
+    .. _full text search query language: http://www.postgresql.org/docs/9.1/static/datatype-textsearch.html#DATATYPE-TSQUERY
+    If you need to download the full resource, read :ref:`dump`.
+    **Results:**
+    The result of this action is a dictionary with the following keys:
+    :rtype: A dictionary with the following keys
+    :param fields: fields/columns and their extra metadata
+    :type fields: list of dictionaries
+    :param offset: query offset value
+    :type offset: int
+    :param limit: query limit value
+    :type limit: int
+    :param filters: query filters
+    :type filters: list of dictionaries
+    :param total: number of total matching records
+    :type total: int
+    :param records: list of matching results
+    :type records: list of dictionaries
+    ","success":true,"result":{"resource_id":"3d38a652-adbc-442b-9760-50d30a6db6c4","fields":[{"type":"int4","id":"_id"},{"type":"text","id":"№/№ промяна"},{"type":"timestamp","id":"Дата"},{"type":"text","id":"Име на фирма"},{"type":"text","id":"Седалище"},{"type":"text","id":"Адрес на управление"},{"type":"text","id":"Ръководител"},{"type":"text","id":"Адрес на аптека - град"},{"type":"text","id":"Адрес на аптека"},{"type":"text","id":"Дейности"},{"type":"text","id":"пом.-фарм."}],"records":[{"Име на фирма":"","Седалище":"","Дейности":"","Адрес на аптека - град":"гр. София","Адрес на аптека":"ж.к. Слатина, бл. 18, вх. В","Дата":"1995-04-09T00:00:00","№/№ промяна":"39-НА","Адрес на управление":"","Ръководител":"Ариадна Генадиева Вакъвчиева","пом.-фарм.":"","_id":1},{"Име на фирма":"","Седалище":"","Дейности":"","Адрес на аптека - град":"гр. Разград","Адрес на аптека":"ул. Коста Петров 2","Дата":"1995-04-09T00:00:00","№/№ промяна":"42-НА","Адрес на управление":"","Ръководител":"ОРБ - Разград
+ ръководител Виолета Христова Петрова","пом.-фарм.":"","_id":2},{"Име на фирма":"","Седалище":"","Дейности":"","Адрес на аптека - град":"гр. София","Адрес на аптека":"кв. Симеоново, ул. Крайречна 10","Дата":"1995-09-27T00:00:00","№/№ промяна":"63-НА","Адрес на управление":"","Ръководител":"Гергана Асенова Влаина - Абдала","пом.-фарм.":"","_id":3},{"Име на фирма":"","Седалище":"","Дейности":"","Адрес на аптека - град":"гр. Пловдив","Адрес на аптека":"ул. Генерал Гурко 25","Дата":"1995-10-18T00:00:00","№/№ промяна":"80-НА","Адрес на управление":"","Ръководител":"Виолета Йорданова Колева","пом.-фарм.":"","_id":4},{"Име на фирма":"","Седалище":"","Дейности":"","Адрес на аптека - град":"гр. Кочериново","Адрес на аптека":"ул. Георги Димитров 109","Дата":"1995-10-25T00:00:00","№/№ промяна":"83-НА","Адрес на управление":"","Ръководител":"Рени Костадинова Апостолова","пом.-фарм.":"","_id":5}],"_links":{"start":"/api/action/datastore_search?limit=5&resource_id=3d38a652-adbc-442b-9760-50d30a6db6c4","next":"/api/action/datastore_search?offset=5&limit=5&resource_id=3d38a652-adbc-442b-9760-50d30a6db6c4"},"limit":5,"total":4207}}

@@ -1,11 +1,12 @@
 var express = require('express');
 var bodyparser = require('body-parser');
+var http = require('http');
 
 var app = express();
 app.use(bodyparser.json());
 app.use('/', express.static(__dirname + '/public'));
 
-var server = require('http').Server(app);
+var server = http.Server(app);
 server.listen(4000, function() {
     console.log('Listening on port %d', server.address().port);
 });
@@ -34,5 +35,5 @@ app.get('/pharmacies', function(req,res) {
 	}).on('error', function(e) {
 	  console.log("Error: " + JSON.stringify(e));
 	});
-	
+
 });

@@ -15,6 +15,7 @@ $(function() {
             lat: location.lat,
             lng: location.lng
         };
+        
         if (radius) params.radius = radius;
         if (limit) params.limit = limit;
         if (name) params.name = name;

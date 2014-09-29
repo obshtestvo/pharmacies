@@ -12,11 +12,23 @@ server.listen(4000, function() {
     console.log('Listening on port %d', server.address().port);
 });
 
-app.get('/medicines', function(req,res) {
+app.get('/pharmacies', function(req,res) {
+
+	if (req.query.medicine)
+		getMedicines(req.query,function(err,result) {
+			if (err)
+				res.status(409).send(err);
+			else if (result) //medicine is present in the list
+				getPharmacies(req,res);
+			else
+				res.status(200).send({"results":[]});
+		});
+	else
+		getPharmacies(req,res);
 
 });
 
-app.get('/pharmacies', function(req,res) {
+function getPharmacies(req,res) {
 
 	//we need to limit the precision because the query characters are limited
 	var lat = +parseFloat(req.query.lat).toFixed(4);
@@ -75,5 +87,35 @@ app.get('/pharmacies', function(req,res) {
 	  console.log("Error: " + JSON.stringify(e));
 	  res.status(409).send(JSON.stringify(e));
 	});
+}
 
-});
+function getMedicines(params,callback) {
+	var resource_id = "f7dbc818-dbee-4893-8052-915121523108";
+	var sql = querystring.escape('SELECT _id FROM "' + resource_id +
+								 '" WHERE "име" LIKE \'' + params.medicine + '\' LIMIT 1');
+
+	var options = {
+	  host: 'data.obshtestvo.bg',
+	  port: 80,
+	  path: '/api/action/datastore_search_sql?sql=' + sql
+	};
+
+	http.get(options, function(ckan_res) {
+	  var body = '';
+	  ckan_res.on('data', function(chunk) {
+	    body += chunk;
+	  });
+	  ckan_res.on('end', function() {
+	  	var parsed = JSON.parse(body);
+	  	if (parsed.success)
+	  		callback(null,parsed.result.records.length > 0);
+	  	else {
+	  		console.log(parsed.error);
+	  		callback(parsed.error);
+	  	}	
+	  });
+	}).on('error', function(e) {
+	  console.log("Error: " + JSON.stringify(e));
+	  callback(JSON.stringify(e));
+	});
+}

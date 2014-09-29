@@ -13,7 +13,7 @@ $(function() {
                 var location = {lat: position.coords.latitude, lng: position.coords.longitude};
                 var map = showMap(location);
 
-                $.get('http://localhost:4000/pharmacies?lat='+location.lat+'&lng='+location.lng,
+                $.get('http://localhost/pharmacies?lat='+location.lat+'&lng='+location.lng,
                     function(data) {
                         //debugger
                         $.each(data.results,function(idx,item) {

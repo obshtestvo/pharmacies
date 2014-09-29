@@ -28,7 +28,7 @@ app.get('/pharmacies', function(req,res) {
 
 	var lat_interval = +(radius / 111.1175).toFixed(4); //meters in a geo-degree
 	var lng_interval = +(radius / (111.1175 * Math.cos((Math.PI / 180) * lat))).toFixed(4);
-	var rect_sql = querystring.escape('SELECT "Адрес на аптека",latitude,longitude ' + 
+	var rect_sql = querystring.escape('SELECT "Адрес на аптека","Име на фирма",latitude,longitude ' + 
 								'from "' + resource_id + '" WHERE ' + 
 								'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
 								' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval));
@@ -36,7 +36,7 @@ app.get('/pharmacies', function(req,res) {
 
 	var cos = Math.cos((Math.PI / 180) * lat);
 	var sin = Math.sin((Math.PI / 180) * lat);
-	var sph_sql = querystring.escape('SELECT "Адрес на аптека",latitude,longitude,distance FROM '+
+	var sph_sql = querystring.escape('SELECT "Адрес на аптека","Име на фирма",latitude,longitude,distance FROM '+
 									'( SELECT *, ' + 
 									'(6371000*acos(' + cos + 
 								    '*cos(radians(latitude))' +
@@ -68,12 +68,12 @@ app.get('/pharmacies', function(req,res) {
 	  		res.status(200).send({"results":parsed.result.records});
 	  	else {
 	  		console.log(parsed.error);
-	  		res.status(409).send({"error":parsed.error});
+	  		res.status(409).send(parsed.error);
 	  	}	
 	  });
 	}).on('error', function(e) {
 	  console.log("Error: " + JSON.stringify(e));
-	  res.status(409).send({"error":e});
+	  res.status(409).send(JSON.stringify(e));
 	});
 
 });

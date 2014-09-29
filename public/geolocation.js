@@ -15,7 +15,7 @@ $(function() {
             lat: location.lat,
             lng: location.lng
         };
-        
+
         if (radius) params.radius = radius;
         if (limit) params.limit = limit;
         if (name) params.name = name;
@@ -43,6 +43,15 @@ $(function() {
             });
     }
 
+    var checkSearchFields= function() {
+        fetchServerData(
+                $('#radius')[0].checkValidity() && $('#radius').val(),
+                $('#limit')[0].checkValidity() && $('#limit').val(),
+                $('#pharmaname')[0].checkValidity() && $('#pharmaname').val(),
+                $('#medname')[0].checkValidity() && $('#medname').val()
+            );
+    }
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
@@ -57,22 +66,9 @@ $(function() {
         showMap();
 
     $('#search input.search').keypress(function(e){
-        if(e.which == 13)
-            fetchServerData(
-                $('#radius').val(),
-                $('#limit').val(),
-                $('#pharmaname').val(),
-                $('#medname').val()
-            );
-    });
-
-    $('#search input.search').on('blur',function(e){
-        fetchServerData(
-            $('#radius').val(),
-            $('#limit').val(),
-            $('#pharmaname').val(),
-            $('#medname').val()
-        );
-    });
+        if(e.which == 13) checkSearchFields();
+    }).on('blur',function(e){
+        checkSearchFields();
+    }).clearSearch();
 
 });

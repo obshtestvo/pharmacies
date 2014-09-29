@@ -61,7 +61,7 @@ function getPharmacies(req,res) {
 								  	'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
 									' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval) + 
 									' ) as d WHERE distance < ' + radius + 
-									' LIMIT ' + limit);
+									' ORDER BY distance ASC LIMIT ' + limit);
 
 	var options = {
 	  host: 'data.obshtestvo.bg',

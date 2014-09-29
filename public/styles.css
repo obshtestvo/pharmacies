@@ -41,6 +41,9 @@ html, body, #map-canvas {
   display:block;
   margin-bottom: 1em;
 }
+#search input:invalid {
+  background-color: #f2dede;
+}
 #search .title {
   padding: 0.3em 0.8em;
   font-size: 1.8em;
@@ -54,4 +57,20 @@ html, body, #map-canvas {
   max-width: 40%;
   border-radius: 1px;
   margin: 0 auto 1em;
+}
+span.deleteicon {
+  position: relative;
+}
+span.deleteicon span {
+  position: absolute;
+  display: block;
+  top: 5px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  background: url('http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=4') 0 -690px;
+  cursor: pointer;
+}
+span.deleteicon input {
+  padding-right: 16px;
 }

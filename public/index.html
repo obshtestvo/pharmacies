@@ -8,6 +8,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv5P_s6ODgEP2inSOT_65DSMRxhqosjCE">
     </script>
     <script src="jquery-1.11.1.min.js"></script>
+    <script src="jquery.clearsearch-1.0.4.js"></script>
     <script src="geolocation.js"></script>
   </head>
   <body>
@@ -15,10 +16,10 @@
     <div id="error"></div>
     <div id="search">
       <span class="title">Търся аптеки</span>
-      <input type="text" id="radius" placeholder="На колко метра от мен (сега са 500)" class="search">
-      <input type="text" id="limit" placeholder="Колко резултата искам (сега са 20)" class="search">
+      <input type="text" pattern="\d*" id="radius" placeholder="На колко метра от мен (сега са 500)" class="search">
+      <input type="text" pattern="\d*" id="limit" placeholder="Колко резултата искам (сега са 20)" class="search">
       <input type="text" id="medname" placeholder="Да има лекарство..." class="search">
-      <!-- <input type="text" id="pharmaname" placeholder="Да се казва..." class="search"> -->
+      <input type="text" id="pharmaname" style="display:none" placeholder="Да се казва..." class="search">
     </div>
   </body>
 </html>

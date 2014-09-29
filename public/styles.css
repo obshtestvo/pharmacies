@@ -6,7 +6,7 @@ html, body, #map-canvas {
 }
 #error {
   position: fixed;
-  top: 5%;
+  top: 7em;
   left: 5%;
   right: 5%;
   z-index: 100;

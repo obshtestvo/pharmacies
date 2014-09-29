@@ -1,0 +1,1 @@
+forever start -w -l logs/forever.log -o logs/out.log -e logs/err.log

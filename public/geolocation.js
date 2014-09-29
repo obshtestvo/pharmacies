@@ -12,8 +12,8 @@ $(function() {
     var fetchServerData = function(radius,limit,name,medicine) {
 
         //TODO: Fix the address configuration ASAP
-        //var server = 'pharmacies.obshtestvo.bg';
-        var server = 'localhost:4000';
+        var server = 'pharmacies.obshtestvo.bg';
+        //var server = 'localhost:4000';
 
         var params = {
             lat: location.lat,

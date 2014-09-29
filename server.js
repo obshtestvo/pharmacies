@@ -21,16 +21,40 @@ app.get('/pharmacies', function(req,res) {
 	//we need to limit the precision because the query characters are limited
 	var lat = +parseFloat(req.query.lat).toFixed(4);
 	var lng = +parseFloat(req.query.lng).toFixed(4);
-	var interval = 0.002;
-	var sql = querystring.escape('SELECT "Адрес на аптека",latitude,longitude ' + 
-								'from "1e8cfdf8-65cd-4bda-80e3-9ec1cf5a1c09" WHERE ' + 
-								'latitude BETWEEN ' + (lat-interval) + ' AND ' + (lat+interval) + 
-								' AND longitude BETWEEN ' + (lng-interval) + ' AND ' + (lng+interval));
+	var limit = req.query.limit || 20;
+	var radius = req.query.radius || 500; //in meters
+
+	var resource_id = "1e8cfdf8-65cd-4bda-80e3-9ec1cf5a1c09";
+
+	var lat_interval = +(radius / 111.1175).toFixed(4); //meters in a geo-degree
+	var lng_interval = +(radius / (111.1175 * Math.cos((Math.PI / 180) * lat))).toFixed(4);
+	var rect_sql = querystring.escape('SELECT "Адрес на аптека",latitude,longitude ' + 
+								'from "' + resource_id + '" WHERE ' + 
+								'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
+								' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval));
+
+
+	var cos = Math.cos((Math.PI / 180) * lat);
+	var sin = Math.sin((Math.PI / 180) * lat);
+	var sph_sql = querystring.escape('SELECT "Адрес на аптека",latitude,longitude,distance FROM '+
+									'( SELECT *, ' + 
+									'(6371000*acos(' + cos + 
+								    '*cos(radians(latitude))' +
+								    '*cos(radians(longitude)-radians('+lng+'))' +
+								    '+' + sin +
+								    '*sin(radians(latitude))' +
+								    ')) AS distance ' +
+								  	'FROM "' + resource_id + '" ' +
+								  	'WHERE ' + 
+								  	'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
+									' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval) + 
+									' ) as d WHERE distance < ' + radius + 
+									' LIMIT ' + limit);
 
 	var options = {
 	  host: 'data.obshtestvo.bg',
 	  port: 80,
-	  path: '/api/action/datastore_search_sql?sql=' + sql
+	  path: '/api/action/datastore_search_sql?sql=' + sph_sql
 	};
 
 	http.get(options, function(ckan_res) {

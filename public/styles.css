@@ -6,18 +6,27 @@ html, body, #map-canvas {
 }
 #search {
   position: fixed;
-  top: 5%;
-  left: 5%;
-  right: 5%;
+  bottom: 5%;
+  left: 1%;
   z-index: 100;
-  text-align: center;
+  /*text-align: center;*/
 }
 #search input {
-  font-size: 2.5em;
-  line-height: 1.5em;
+  font-size: 1.8em;
+  line-height: 1.2em;
   padding: 0.3em 0.8em;
-  width: 20em;
-  max-width: 80%;
+  width: 15em;
+  max-width: 100%;
   border: 1px solid #777;
   box-shadow: 0 0 20px #222;
+  display:block;
+  margin-bottom: 1em;
+}
+#search .title {
+  font-weight: bold;
+  font-size: 1.8em;
+  line-height: 1.2em;
+  text-shadow: 0 0 5px #222;
+  display:block;
+  margin-bottom: 1em;
 }

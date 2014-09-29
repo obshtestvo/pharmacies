@@ -2,7 +2,7 @@ $(function() {
 
     var sofia = {lat: 42.637626, lng: 23.322284}; //initialize with Sofia coordinates
     var showMap = function(center) {
-        var mapOptions = { center: center, zoom: 12 };
+        var mapOptions = { center: center, zoom: 14 };
         return new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
     }
 
@@ -14,9 +14,11 @@ $(function() {
                 var map = showMap(location);
 
                 //TODO: Fix the address configuration ASAP
-                $.get('http://pharmacies.obshtestvo.bg/pharmacies?lat='+location.lat+'&lng='+location.lng,
+                //var server = 'pharmacies.obshtestvo.bg';
+                var server = 'localhost:4000';
+ 
+                $.get('http://' + server + '/pharmacies?lat='+location.lat+'&lng='+location.lng,
                     function(data) {
-                        //debugger
                         $.each(data.results,function(idx,item) {
                             var marker = new google.maps.Marker({
                                 map: map,

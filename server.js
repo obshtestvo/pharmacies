@@ -57,7 +57,7 @@ function getPharmacies(req,res) {
 								    '*sin(radians(latitude))' +
 								    ')) AS distance ' +
 								  	'FROM "' + resource_id + '" ' +
-								  	'WHERE ' + 
+								  	'WHERE ' + (req.query.name ? '"Име на фирма" LIKE \'%' + req.query.name + '%\' AND ' : '') +  
 								  	'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
 									' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval) + 
 									' ) as d WHERE distance < ' + radius + 

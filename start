@@ -1,1 +1,1 @@
-forever start -w -l logs/forever.log -o logs/out.log -e logs/err.log
+forever start -w -l /var/log/pharmacies/forever.log -o /var/log/pharmacies/out.log -e /var/log/pharmacies/err.log server.js

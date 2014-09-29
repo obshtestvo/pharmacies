@@ -14,8 +14,8 @@ $(function() {
                 var map = showMap(location);
 
                 //TODO: Fix the address configuration ASAP
-                //var server = 'pharmacies.obshtestvo.bg';
-                var server = 'localhost:4000';
+                var server = 'pharmacies.obshtestvo.bg';
+                //var server = 'localhost:4000';
  
                 $.get('http://' + server + '/pharmacies?lat='+location.lat+'&lng='+location.lng,
                     function(data) {

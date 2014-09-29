@@ -11,10 +11,6 @@ $(function() {
 
     var fetchServerData = function(radius,limit,name,medicine) {
 
-        //TODO: Fix the address configuration ASAP
-        var server = 'pharmacies.obshtestvo.bg';
-        //var server = 'localhost:4000';
-
         var params = {
             lat: location.lat,
             lng: location.lng
@@ -24,8 +20,8 @@ $(function() {
         if (name) params.name = name;
         if (medicine) params.medicine = medicine;
 
-        $("#error").html("");
-        $.get('http://' + server + '/pharmacies', params)
+        $("#error").html("").hide();
+        $.get('http://' + window.location.host + '/pharmacies', params)
             .done(function(data) {
                 $.each(markers,function(idx,item){
                     item.setMap(null);
@@ -42,7 +38,7 @@ $(function() {
                 });
             })
             .fail(function(data) {
-                $("#error").html("Error contacting data portal");
+                $("#error").html("Error contacting data portal").show();
             });
     }
 
@@ -60,7 +56,13 @@ $(function() {
         showMap();
 
     $('#search input.search').keypress(function(e){
-        if(e.which == 13) $(this).blur();
+        if(e.which == 13)
+            fetchServerData(
+                $('#radius').val(),
+                $('#limit').val(),
+                $('#pharmaname').val(),
+                $('#medname').val()
+            );
     });
 
     $('#search input.search').on('blur',function(e){

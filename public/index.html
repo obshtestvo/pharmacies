@@ -19,11 +19,23 @@
     </div>
     <div id="error"></div>
     <div id="search">
-      <span class="title">Търся аптеки</span>
-      <input type="text" pattern="\d*" id="radius" placeholder="На колко метра от мен (сега са 500)" class="search">
-      <input type="text" pattern="\d*" id="limit" placeholder="Колко резултата искам (сега са 20)" class="search">
-      <input type="text" id="medname" placeholder="Да има лекарство..." class="search">
-      <input type="text" id="pharmaname" placeholder="Да се казва..." class="search">
+      <span class="title">Подробни настройки</span>
+
+      <label for="radius">Търси на <output id="radiusValue" for="radius">500</output> метра</label>
+      <input type="range" min="100" max="2500" step="50" value="500" id="radius" />                                                       
+      <label for="limit">Покажи <output id="limitValue" for="radius">20</output> резултата</label>
+      <input type="range" min="5" max="100" step="5" value="20" id="limit" />
+
+      <label for="pharmaname">Знаеш ли как се казва аптеката?</label>
+      <input type="text" id="pharmaname" placeholder="Казва се..." class="search">
+
+      <input type="button" id="searchButton" class="title" value="Приложи настройките"/>
+
+      <div class="box">
+      <img id="exclamation" src="exclamation_mark.png"/>Показваме само аптеки, които имат договор с НЗОК. Провери дали лекарството, което търсиш, е в позитивния списък на НЗОК. 
+        <input type="text" id="medname" placeholder="Търся лекарството..." class="search">       
+      </div>     
+
     </div>
   </body>
 </html>

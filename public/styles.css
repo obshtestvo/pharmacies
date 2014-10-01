@@ -26,23 +26,31 @@ html, body, #map-canvas {
 #search {
   position: fixed;
   bottom: 5%;
-  right: 1%;
+  left: 1%;
   z-index: 100;
-  /*text-align: center;*/
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.7);
+  padding: 0.8em;
+  max-width: 30%;
 }
-#search input {
+#search input[type="text"] {
   font-size: 1.8em;
   line-height: 1.2em;
   padding: 0.3em 0.8em;
-  width: 18em;
-  max-width: 100%;
+  width: 22em;
   border: 1px solid #777;
   box-shadow: 0 0 20px #222;
   display:block;
-  margin-bottom: 1em;
+  margin: 1em;
 }
-#search input:invalid {
-  background-color: #f2dede;
+#search .clearButton {
+  font-weight: bold;
+  height: 1.3em;
+  font-size: 1.8em;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 2em;
+  width: 1.3em;
+  text-align: center;
 }
 #search .title {
   padding: 0.3em 0.8em;
@@ -53,9 +61,28 @@ html, body, #map-canvas {
   background-color: rgba(255,255,255,0.7);
   display:block;
   text-align: center;
-  max-width: 40%;
-  border-radius: 1px;
+  max-width: 60%;
   margin: 0 auto 1em auto;
+}
+#search .box {
+  font-weight: bold;
+  font-size: 1.3em;
+  text-shadow: 0 0 1px rgba(255,255,255,0.7);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.7);
+  padding: 0.3em 0.8em;
+}
+#search .box #exclamation {
+  width: 1.3em;
+  vertical-align: text-bottom;
+  margin-right: 0.2em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.7);
+  border-radius:1.5em;
+}
+#search .box input {
+  font-size: 1.4em;
+  line-height: 1em;
+  margin: 0.8em 0em;
 }
 #header {
   position: fixed;
@@ -76,5 +103,95 @@ html, body, #map-canvas {
   width: 8em;
   vertical-align: text-bottom;
 }
+label {
+  font-size: 1.8em;
+  line-height: 1.2em;
+  margin-left: 1em;
+}
+
+/* Styling the slider */
+
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid transparent;
+    /*required for proper track sizing in FF*/
+    width: 20em;
+    display:block;
+    background-color: transparent;
+    margin: 1em;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 20em;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.8);
+    margin-top: -4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+input[type=range]::-moz-range-track {
+    width: 20em;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+input[type=range]::-ms-track {
+    width: 20em;
+    height: 16px;
+    background: #ddd;
+    border: none;
+    border-radius: 10px;
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    outline: none;
+    background: #777;
+    border-radius: 10px 0 0 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+input[type=range]:focus::-ms-track {
+    background: #ccc;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
 
 

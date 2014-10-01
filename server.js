@@ -57,7 +57,7 @@ function getPharmacies(req,res) {
 								    '*sin(radians(latitude))' +
 								    ')) AS distance ' +
 								  	'FROM "' + resource_id + '" ' +
-								  	'WHERE ' + (req.query.name ? '"Име на фирма" LIKE \'%' + req.query.name + '%\' AND ' : '') +  
+								  	'WHERE ' + (req.query.name ? 'LOWER("Име на фирма") LIKE \'%' + req.query.name.toLowerCase() + '%\' AND ' : '') +  
 								  	'latitude BETWEEN ' + (lat-lat_interval) + ' AND ' + (lat+lat_interval) + 
 									' AND longitude BETWEEN ' + (lng-lng_interval) + ' AND ' + (lng+lng_interval) + 
 									' ) as d WHERE distance < ' + radius + 
@@ -92,7 +92,7 @@ function getPharmacies(req,res) {
 function getMedicines(params,callback) {
 	var resource_id = "f7dbc818-dbee-4893-8052-915121523108";
 	var sql = querystring.escape('SELECT _id FROM "' + resource_id +
-								 '" WHERE LOWER("име") LIKE \'' + params.medicine + '\' LIMIT 1');
+								 '" WHERE LOWER("име") LIKE \'' + params.medicine.toLowerCase() + '\' LIMIT 1');
 
 	var options = {
 	  host: 'data.obshtestvo.bg',

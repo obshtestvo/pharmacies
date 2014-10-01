@@ -6,7 +6,19 @@ $(function() {
     var params = {};
 
     var showMap = function() {
-        var mapOptions = { center: location, zoom: 16 };
+        var mapOptions = {
+            center: location,
+            zoom: 16,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.DEFAULT,
+                position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+            panControl: true,
+            panControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_BOTTOM
+                },
+            };
         map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
         google.maps.event.addListener(map,'dragend',function(event) {
             debugger
@@ -16,7 +28,7 @@ $(function() {
         });
     }
 
-    var fetchServerData = function(radius,limit,name,medicine) {
+    var fetchServerData = function(radius,limit,name) {
 
         var params = {
             lat: location.lat,
@@ -26,7 +38,6 @@ $(function() {
         if (radius) params.radius = radius;
         if (limit) params.limit = limit;
         if (name) params.name = name;
-        if (medicine) params.medicine = medicine;
 
         $("#error").html("").hide();
         $.get('http://' + window.location.host + '/pharmacies', params)
@@ -54,10 +65,37 @@ $(function() {
         fetchServerData(
                 $('#radius')[0].checkValidity() && $('#radius').val(),
                 $('#limit')[0].checkValidity() && $('#limit').val(),
-                $('#pharmaname')[0].checkValidity() && $('#pharmaname').val(),
-                $('#medname')[0].checkValidity() && $('#medname').val()
+                $('#pharmaname')[0].checkValidity() && $('#pharmaname').val()
             );
     }
+
+    //ATTACH EVENTS
+
+    $('#search input.search').clearSearch({clearClass:'clearButton'}); 
+
+    $('#radius').on('input',function(e){
+        $('#radiusValue').val(this.value);
+    });
+
+    $('#limit').on('input',function(e){
+        $('#limitValue').val(this.value);
+    });
+
+    $('#pharmaname').keypress(function(e) {
+        if (e.charCode == '13')
+            $('#searchButton').click();
+    })
+
+    $('#searchButton').on('click',function(e){
+        fetchServerData(
+            $('#radius').val(),
+            $('#limit').val(),
+            $('#pharmaname').val()
+        );
+        $('#pharmaname').val("");
+    });
+
+    //INITIALIZE MAP
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -72,10 +110,5 @@ $(function() {
     else
         showMap();
 
-    $('#search input.search').keypress(function(e){
-        if(e.which == 13) checkSearchFields();
-    }).on('blur',function(e){
-        checkSearchFields();
-    }).clearSearch();
 
 });

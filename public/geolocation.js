@@ -3,10 +3,17 @@ $(function() {
     var location = {lat: 42.637626, lng: 23.322284}; //initialize with Sofia coordinates
     var map = null;
     var markers = [];
+    var params = {};
 
     var showMap = function() {
         var mapOptions = { center: location, zoom: 16 };
         map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+        google.maps.event.addListener(map,'dragend',function(event) {
+            debugger
+            location.lat = map.getCenter().lat();
+            location.lng = map.getCenter().lng();
+            fetchServerData();
+        });
     }
 
     var fetchServerData = function(radius,limit,name,medicine) {

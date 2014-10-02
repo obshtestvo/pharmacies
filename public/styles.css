@@ -188,86 +188,85 @@ label {
 /* Styling the slider */
 
 input[type=range] {
-    /*removes default webkit styles*/
-    -webkit-appearance: none;
-    /*fix for FF unable to apply focus style bug */
-    border: 1px solid transparent;
-    /*required for proper track sizing in FF*/
-    width: 20em;
-    display:block;
-    background-color: transparent;
-    margin: 1em;
+  /*removes default webkit styles*/
+  -webkit-appearance: none;
+  /*fix for FF unable to apply focus style bug */
+  border: 1px solid transparent;
+  /*required for proper track sizing in FF*/
+  width: 20em;
+  display:block;
+  background-color: transparent;
+  margin: 1em;
 }
 input[type=range]::-webkit-slider-runnable-track {
-    width: 20em;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
+  width: 20em;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
 }
 input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.8);
-    margin-top: -4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.8);
+  margin-top: -4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 input[type=range]:focus {
-    outline: none;
+  outline: none;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
+  background: #ccc;
 }
 input[type=range]::-moz-range-track {
-    width: 20em;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
+  width: 20em;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
 }
 input[type=range]::-moz-range-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.8);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.8);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
 /*hide the outline behind the border*/
 input[type=range]:-moz-focusring{
-    outline: 1px solid white;
-    outline-offset: -1px;
+  outline: 1px solid white;
+  outline-offset: -1px;
 }
 input[type=range]::-ms-track {
-    width: 20em;
-    height: 16px;
-    background: #ddd;
-    border: none;
-    border-radius: 10px;
-    /*remove default tick marks*/
-    color: transparent;
+  width: 20em;
+  height: 16px;
+  background: #ddd;
+  border: none;
+  border-radius: 10px;
+  /*remove default tick marks*/
+  color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-    outline: none;
-    background: #777;
-    border-radius: 10px 0 0 10px;
+  outline: none;
+  background: #777;
+  border-radius: 10px 0 0 10px;
 }
 input[type=range]::-ms-thumb {
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.8);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.8);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 input[type=range]:focus::-ms-track {
-    background: #ccc;
+  background: #ccc;
 }
 input[type=range]:focus::-ms-fill-lower {
-    background: #888;
-
-
+  background: #888;
+}

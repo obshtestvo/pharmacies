@@ -25,7 +25,7 @@ html, body, #map-canvas {
 }
 #error {
   position: fixed;
-  top: 7em;
+  top: calc(2% + 7em);
   left: 5%;
   right: 5%;
   z-index: 100;
@@ -84,7 +84,7 @@ html, body, #map-canvas {
 }
 #search .title {
   padding: 0.3em 0.8em;
-  font-size: 1.8em;
+  font-size: 1.6em;
   line-height: 1.2em;
   text-shadow: 0 0 1px rgba(255,255,255,0.7);
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
@@ -94,14 +94,25 @@ html, body, #map-canvas {
   margin: 0 auto 1em auto;
 }
 #search input[type="text"] {
-  font-size: 1.8em;
+  font-size: 1.6em;
   line-height: 1.2em;
   padding: 0.3em 0.8em;
-  width: 80%;
+  width: 90%;
   border: 1px solid #777;
   box-shadow: 0 0 20px #222;
   display:block;
   margin: 1em;
+}
+#search #addrButton {
+  display: inline-block;
+  position: relative;
+  top: -3em;
+  background-repeat: no-repeat;
+  background-image: url("icon_center_map.png");
+  background-size: cover;
+  width: 2em;
+  height: 2em;
+  float: right;
 }
 #search .clearButton {
   font-weight: bold;
@@ -111,6 +122,9 @@ html, body, #map-canvas {
   border-radius: 2em;
   width: 1.3em;
   text-align: center;
+}
+#search .clearButton_div {
+  width: 90%;
 }
 #search .box {
   font-weight: bold;

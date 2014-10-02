@@ -4,8 +4,8 @@ $(function() {
     var params = {
         lat: 42.637626,
         lng: 23.322284,
-        radius: "",
-        limit: "",
+        radius: 500,
+        limit: 20,
         name: ""
     };
 
@@ -54,7 +54,7 @@ $(function() {
                 });
             })
             .fail(function(data) {
-                $("#error").html("Error contacting data portal").show();
+                $("#error").html("Грешка при свързване с портала за данни").show();
             });
     }
 
@@ -68,7 +68,7 @@ $(function() {
                 if (data.responseText && JSON.parse(data.responseText).error == "nomatch")
                     $("#medno").show();
                 else
-                    $("#error").html("Error contacting data portal").show();
+                    $("#error").html("Грешка при свързване с портала за данни").show();
             });
     }
 
@@ -116,6 +116,28 @@ $(function() {
         params.radius = $('#radius').val();
         $('#pharmaname').val("");
         fetchServerData();
+    });
+
+    var geocoder = new google.maps.Geocoder();
+    $('#addrButton').on('click',function(e){  
+        $('#addrButton').val("");  
+        geocoder.geocode({
+           'address': $('#address').val(),
+           'region': 'BG'
+        }, function(results, status) {
+           $('#address').val("");
+           if (status == google.maps.GeocoderStatus.OK) {
+               map.setCenter(results[0].geometry.location);
+               params.lat = map.getCenter().lat();
+               params.lng = map.getCenter().lng();
+               fetchServerData();
+           } else {
+               $("#error").html("Не е открит такъв адрес").show();
+               setTimeout(function() {
+                    $("#error").hide();
+               },3000);
+           }
+       });
     });
 
     //INITIALIZE MAP

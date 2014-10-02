@@ -24,6 +24,11 @@
     <div id="search">
       <span class="title">Подробни настройки</span>
 
+      <label for="address">Насочи картата към по-точен адрес</label>
+      <input type="text" id="address" placeholder="Аптеката е около..." class="search">
+
+      <input type="button" id="addrButton" class="title"/>
+
       <label for="radius">Търси на <output id="radiusValue" for="radius">500</output> метра</label>
       <input type="range" min="100" max="2500" step="50" value="500" id="radius" />                                                       
       <label for="limit">Покажи <output id="limitValue" for="radius">20</output> резултата</label>

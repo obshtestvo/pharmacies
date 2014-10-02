@@ -78,9 +78,9 @@ $(function() {
     //ATTACH EVENTS
 
     $('#menuIcon').on('click',function(e) {
-        $('#menuExplain').hide();
+        $('#menuExplain').hide()
         $('#search').toggle();
-    })
+    });
 
     $('#search input.search').clearSearch({clearClass:'clearButton'}); 
 
@@ -106,6 +106,11 @@ $(function() {
         else setTimeout(function() {
             checkMedicine($('#medname').val());
         },1000);
+    }).on('focus',function(e){
+        if ($(this).val() == "") {
+            $("#medok").hide();
+            $("#medno").hide();
+        }
     })
 
     $('#searchButton').on('click',function(e){

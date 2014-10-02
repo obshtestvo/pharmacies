@@ -103,14 +103,18 @@ html, body, #map-canvas {
   display:block;
   margin: 1em;
 }
+#address {
+  max-width: 80%;
+}
 #search #addrButton {
   display: inline-block;
   position: relative;
   top: -3em;
-  background-repeat: no-repeat;
+/*  background-repeat: no-repeat;
   background-image: url("icon_center_map.png");
   background-size: cover;
-  width: 2em;
+*/
+  width: 20%;
   height: 2em;
   float: right;
 }
@@ -269,4 +273,52 @@ input[type=range]:focus::-ms-track {
 }
 input[type=range]:focus::-ms-fill-lower {
   background: #888;
+}
+
+@media screen and (max-width: 500px) {
+  #header {
+    top: 30px;
+    left: 2%;
+    right: 2%;
+    font-size: 1em;
+    padding: 1% 3%;
+  }
+  #header h1 {
+    font-weight: normal;
+  }
+  #search {
+    left: 1%;
+    max-width: 98%;
+  }
+  #search .title {
+    font-size: 1.4em;
+  }
+  #search label {
+    font-size: 1.4em;
+    margin: 4% 2% 2% 2%;
+    display: block;
+  }
+  #search input[type="text"] {
+    font-size: 1.4em;
+    margin: 0;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(36, 36, 36, 0.7);
+  }
+  #search .clearButton_div {
+    margin: 2%;
+    width: 96%;
+  }
+  #search #searchButton {
+    margin: 6% auto;
+  }
+  #search #address {
+    width: 65%;
+  }
+  #search #addrButton {
+    top: -2.5em;
+    width: 30%;
+  }
 }

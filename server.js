@@ -12,7 +12,7 @@ server.listen(4000, function() {
     console.log('Listening on port %d', server.address().port);
 });
 
-app.get('/medicines',function(req,res) {
+app.get('/medicine',function(req,res) {
 	var resource_id = "f7dbc818-dbee-4893-8052-915121523108";
 	var sql = querystring.escape('SELECT _id FROM "' + resource_id +
 								 '" WHERE LOWER("име") LIKE \'' +
@@ -105,4 +105,4 @@ app.get('/pharmacies', function(req,res) {
 	  console.log("Error: " + JSON.stringify(e));
 	  res.status(409).send(JSON.stringify(e));
 	});
-}
+});

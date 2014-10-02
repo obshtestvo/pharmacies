@@ -2,6 +2,7 @@
 <html>
   <head>
   	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Аптеки, работещи с НЗОК – Общество.бг</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script type="text/javascript"
@@ -18,6 +19,8 @@
       <h3>Пилотен проект на МТИТС и <a href="http://obshtestvo.bg"><img id="obshtestvo" src="http://www.obshtestvo.bg/static/img/logo.png"></a><h3>
     </div>
     <div id="error"></div>
+    <div id="menuIcon"></div>
+    <div id="menuExplain">&#9664; Подробно търсене</div>
     <div id="search">
       <span class="title">Подробни настройки</span>
 
@@ -32,8 +35,12 @@
       <input type="button" id="searchButton" class="title" value="Приложи настройките"/>
 
       <div class="box">
-      <img id="exclamation" src="exclamation_mark.png"/>Показваме само аптеки, които имат договор с НЗОК. Провери дали лекарството, което търсиш, е в позитивния списък на НЗОК. 
-        <input type="text" id="medname" placeholder="Търся лекарството..." class="search">       
+      <img id="exclamation" src="exclamation_mark.png"/><span>Показваме само аптеки, които имат договор с НЗОК.Провери дали лекарството, което търсиш, е в позитивния списък на НЗОК.</span> 
+        <div style="position:relative;">
+          <input type="text" id="medname" placeholder="Търся лекарството..." class="search"> 
+          <span id="medok">&#10003;</span>  
+          <span id="medno">&times;</span> 
+        </div>    
       </div>     
 
     </div>

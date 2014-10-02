@@ -61,15 +61,26 @@ $(function() {
             });
     }
 
-    var checkSearchFields= function() {
-        fetchServerData(
-                $('#radius')[0].checkValidity() && $('#radius').val(),
-                $('#limit')[0].checkValidity() && $('#limit').val(),
-                $('#pharmaname')[0].checkValidity() && $('#pharmaname').val()
-            );
+    var checkMedicine = function(medicine) {
+        $("#error").html("").hide();
+        $.get('http://' + window.location.host + '/medicine', {medicine:medicine})
+            .done(function(data) {
+                $("#medok").show();
+            })
+            .fail(function(data) {
+                if (data.responseText && JSON.parse(data.responseText).error == "nomatch")
+                    $("#medno").show();
+                else
+                    $("#error").html("Error contacting data portal").show();
+            });
     }
 
     //ATTACH EVENTS
+
+    $('#menuIcon').on('click',function(e) {
+        $('#menuExplain').hide();
+        $('#search').toggle();
+    })
 
     $('#search input.search').clearSearch({clearClass:'clearButton'}); 
 
@@ -84,6 +95,17 @@ $(function() {
     $('#pharmaname').keypress(function(e) {
         if (e.charCode == '13')
             $('#searchButton').click();
+    });
+
+    var medicineTimer = null;
+    $('#medname').keydown(function(e) {
+        $("#medok").hide();
+        $("#medno").hide();
+        clearTimeout(medicineTimer);
+        if (e.charCode == '13') checkMedicine($('#medname').val());
+        else setTimeout(function() {
+            checkMedicine($('#medname').val());
+        },1000);
     })
 
     $('#searchButton').on('click',function(e){

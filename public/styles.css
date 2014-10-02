@@ -4,6 +4,25 @@ html, body, #map-canvas {
   padding: 0;
   font: 10px verdana, arial, sans-serif;
 }
+
+
+#header {
+  position: fixed;
+  top: 2%;
+  left: 20%;
+  right: 20%;
+  font-size: 1.5em;
+  text-shadow: 0 0 1px rgba(255,255,255,0.7);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.7);
+  display:block;
+  text-align: center;
+  border-radius: 1px;
+}
+#obshtestvo {
+  width: 8em;
+  vertical-align: text-bottom;
+}
 #error {
   position: fixed;
   top: 7em;
@@ -23,34 +42,45 @@ html, body, #map-canvas {
   box-shadow: 0 0 20px #222;
   display: none;
 }
-#search {
+
+#menuIcon {
+  background: url("icon_mobile_menu.png");
+  background-size: cover;
   position: fixed;
   bottom: 5%;
+  left: 1%;
+  z-index: 200;
+  content: " ";
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#menuExplain {
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.7);
+  padding: 0.4em;
+  z-index: 100;
+  position: fixed;
+  bottom: 5%;
+  left: calc(1% + 35px);
+  font-size: 1.4em;
+  line-height: 1.2em;
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+  margin-bottom: 0.1em;
+}
+
+
+#search {
+  position: fixed;
+  bottom: calc(5% + 35px);
   left: 1%;
   z-index: 100;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   background-color: rgba(255,255,255,0.7);
   padding: 0.8em;
   max-width: 30%;
-}
-#search input[type="text"] {
-  font-size: 1.8em;
-  line-height: 1.2em;
-  padding: 0.3em 0.8em;
-  width: 22em;
-  border: 1px solid #777;
-  box-shadow: 0 0 20px #222;
-  display:block;
-  margin: 1em;
-}
-#search .clearButton {
-  font-weight: bold;
-  height: 1.3em;
-  font-size: 1.8em;
-  background-color: rgba(0,0,0,0.1);
-  border-radius: 2em;
-  width: 1.3em;
-  text-align: center;
+  display: none;
 }
 #search .title {
   padding: 0.3em 0.8em;
@@ -61,48 +91,80 @@ html, body, #map-canvas {
   background-color: rgba(255,255,255,0.7);
   display:block;
   text-align: center;
-  max-width: 60%;
   margin: 0 auto 1em auto;
+}
+#search input[type="text"] {
+  font-size: 1.8em;
+  line-height: 1.2em;
+  padding: 0.3em 0.8em;
+  width: 80%;
+  border: 1px solid #777;
+  box-shadow: 0 0 20px #222;
+  display:block;
+  margin: 1em;
+}
+#search .clearButton {
+  font-weight: bold;
+  height: 1.3em;
+  font-size: 1.6em;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 2em;
+  width: 1.3em;
+  text-align: center;
 }
 #search .box {
   font-weight: bold;
-  font-size: 1.3em;
   text-shadow: 0 0 1px rgba(255,255,255,0.7);
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   background-color: rgba(255,255,255,0.7);
   padding: 0.3em 0.8em;
 }
+#search .box span {
+  font-size: 1.3em;
+}
 #search .box #exclamation {
-  width: 1.3em;
+  width: 1.4em;
   vertical-align: text-bottom;
   margin-right: 0.2em;
   box-shadow: 0 0 5px rgba(0,0,0,0.7);
   border-radius:1.5em;
 }
 #search .box input {
-  font-size: 1.4em;
-  line-height: 1em;
-  margin: 0.8em 0em;
+  margin: 1em 0.4em;
+  width: 85%;
 }
-#header {
-  position: fixed;
-  top: 2%;
-  left: 20%;
-  right: 20%;
-  padding: 0.2em 0.6em;
-  font-size: 1.5em;
-  line-height: 1em;
+
+#search .box span#medok {
+  position: absolute;
+  right: 0.02em;
+  top: 0.4em;
   text-shadow: 0 0 1px rgba(255,255,255,0.7);
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  background-color: rgba(255,255,255,0.7);
-  display:block;
+  display: none;
+  background-color: #6DBD6D;
+  color: white;
+  border-radius: 2em;
+  width: 1.3em;
+  height: 1.3em;
   text-align: center;
-  border-radius: 1px;
+  font-size:1.6em;
 }
-#obshtestvo {
-  width: 8em;
-  vertical-align: text-bottom;
+#search .box span#medno {
+  position: absolute;
+  right: 0.02em;
+  top: 0.4em;
+  text-shadow: 0 0 1px rgba(255,255,255,0.7);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: none;
+  background-color: #EB5050;
+  color: white;
+  border-radius: 2em;
+  width: 1.3em;
+  height: 1.3em;
+  text-align: center;
+  font-size:1.6em;
 }
+
 label {
   font-size: 1.8em;
   line-height: 1.2em;

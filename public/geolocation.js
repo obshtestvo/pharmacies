@@ -1,13 +1,20 @@
 $(function() {
 
-    var location = {lat: 42.637626, lng: 23.322284}; //initialize with Sofia coordinates
+    //initialize with Sofia coordinates
+    var params = {
+        lat: 42.637626,
+        lng: 23.322284,
+        radius: "",
+        limit: "",
+        name: ""
+    };
+
     var map = null;
     var markers = [];
-    var params = {};
 
     var showMap = function() {
         var mapOptions = {
-            center: location,
+            center: {lat: params.lat, lng: params.lng},
             zoom: 16,
             zoomControl: true,
             zoomControlOptions: {
@@ -21,23 +28,13 @@ $(function() {
             };
         map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
         google.maps.event.addListener(map,'dragend',function(event) {
-            debugger
-            location.lat = map.getCenter().lat();
-            location.lng = map.getCenter().lng();
+            params.lat = map.getCenter().lat();
+            params.lng = map.getCenter().lng();
             fetchServerData();
         });
     }
 
-    var fetchServerData = function(radius,limit,name) {
-
-        var params = {
-            lat: location.lat,
-            lng: location.lng
-        };
-
-        if (radius) params.radius = radius;
-        if (limit) params.limit = limit;
-        if (name) params.name = name;
+    var fetchServerData = function() {
 
         $("#error").html("").hide();
         $.get('http://' + window.location.host + '/pharmacies', params)
@@ -113,13 +110,12 @@ $(function() {
         }
     })
 
-    $('#searchButton').on('click',function(e){
-        fetchServerData(
-            $('#radius').val(),
-            $('#limit').val(),
-            $('#pharmaname').val()
-        );
+    $('#searchButton').on('click',function(e){    
+        params.name = $('#pharmaname').val();
+        params.limit = $('#limit').val();
+        params.radius = $('#radius').val();
         $('#pharmaname').val("");
+        fetchServerData();
     });
 
     //INITIALIZE MAP
@@ -127,7 +123,8 @@ $(function() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             function(position) {
-                location = {lat: position.coords.latitude, lng: position.coords.longitude};
+                params.lat = position.coords.latitude;
+                params.lng = position.coords.longitude;
                 showMap();
                 fetchServerData();
             },

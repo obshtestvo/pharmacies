@@ -79,7 +79,7 @@ html, body, #map-canvas {
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   background-color: rgba(255,255,255,0.7);
   padding: 0.8em;
-  max-width: 30%;
+  max-width: 40%;
   display: none;
 }
 #search .title {
@@ -103,19 +103,25 @@ html, body, #map-canvas {
   display:block;
   margin: 1em;
 }
+#addrDiv {
+  width: 100%;
+  height: 3em;
+  margin-bottom: 2em;
+}
 #address {
   max-width: 80%;
+  float: left;
 }
 #search #addrButton {
   display: inline-block;
   position: relative;
-  top: -3em;
 /*  background-repeat: no-repeat;
   background-image: url("icon_center_map.png");
   background-size: cover;
 */
   width: 20%;
-  height: 2em;
+  line-height: 1.2em;
+  margin-top: 1em;
   float: right;
 }
 #search .clearButton {
@@ -290,6 +296,8 @@ input[type=range]:focus::-ms-fill-lower {
     left: 1%;
     max-width: 98%;
     overflow-y: auto;
+    position: absolute;
+    /*max-height: 80%;*/
   }
   #search .title {
     font-size: 1.4em;
@@ -321,7 +329,8 @@ input[type=range]:focus::-ms-fill-lower {
     width: 65%;
   }
   #search #addrButton {
-    top: -2.5em;
     width: 30%;
+    height: 3em;
+    margin-top: 0;
   }
 }

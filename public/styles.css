@@ -97,7 +97,7 @@ html, body, #map-canvas {
   font-size: 1.6em;
   line-height: 1.2em;
   padding: 0.3em 0.8em;
-  width: 90%;
+  width: 80%;
   border: 1px solid #777;
   box-shadow: 0 0 20px #222;
   display:block;
@@ -128,7 +128,7 @@ html, body, #map-canvas {
   text-align: center;
 }
 #search .clearButton_div {
-  width: 90%;
+  width: 80%;
 }
 #search .box {
   font-weight: bold;

@@ -134,7 +134,7 @@ html, body, #map-canvas {
   font-weight: bold;
   text-shadow: 0 0 1px rgba(255,255,255,0.7);
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.8);
   padding: 0.3em 0.8em;
 }
 #search .box span {
@@ -289,6 +289,7 @@ input[type=range]:focus::-ms-fill-lower {
   #search {
     left: 1%;
     max-width: 98%;
+    overflow-y: auto;
   }
   #search .title {
     font-size: 1.4em;
@@ -306,6 +307,8 @@ input[type=range]:focus::-ms-fill-lower {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     box-shadow: 0 0 5px rgba(36, 36, 36, 0.7);
+    max-height: 90%;
+    overflow-y: auto;
   }
   #search .clearButton_div {
     margin: 2%;

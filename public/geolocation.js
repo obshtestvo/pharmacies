@@ -10,6 +10,7 @@ $(function() {
     };
 
     var map = null;
+    var infowindow = new google.maps.InfoWindow();
     var markers = [];
 
     var showMap = function() {
@@ -51,6 +52,14 @@ $(function() {
                         title: item["Адрес на аптека"] + "\n" + (item["Име на фирма"] || "")
                     });
                     markers.push(marker);
+
+                    google.maps.event.addListener(marker, 'click', (function(marker) {
+                        return function() {
+                          infowindow.setContent('<div style="line-height: 1em;">' + marker.title + '</div>');
+                          infowindow.open(map,marker);
+                        }
+                    })(marker));
+
                 });
             })
             .fail(function(data) {

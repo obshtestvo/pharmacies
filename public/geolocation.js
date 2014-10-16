@@ -99,12 +99,14 @@ $(function() {
     });
 
     $('#pharmaname').keypress(function(e) {
+        $('#pharmaname').get(0).focus();
         if (e.charCode == '13')
             $('#searchButton').click();
     });
 
     var medicineTimer = null;
     $('#medname').keydown(function(e) {
+        $('#medname').get(0).focus();
         $("#medok").hide();
         $("#medno").hide();
         clearTimeout(medicineTimer);
